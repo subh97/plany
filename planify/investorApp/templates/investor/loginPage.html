@@ -1,0 +1,50 @@
+<!DOCTYPE html>3
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+</head>
+<body>
+    
+    <center><div class="login-form">  
+        <h1>Login page</h1>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                     <p class="er">{{error}}</p>
+                {% endfor %}
+            {% endif %}
+            <table>
+                {% for fm in form %}
+                <tr>
+                    <td>
+                        {{ fm.label_tag}}
+                    </td>
+                    <td>
+                        {{fm}} {{ fm.error|striptags }} 
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+            <br>
+            
+            <table>
+                <th>
+                    <td>
+                        <button type="submit">Login</button>
+                    </td>    
+                </th>
+            </table>
+            <br>
+            <table>
+                <th>
+                    <td><p> Don't have an account? <a href="{% url 'investorApp:homePageUrl' %}">Sign Up</a></p></td> 
+                </th>
+            </table>   
+        </form><br>      
+    </div></center>
+</body>
+</html>

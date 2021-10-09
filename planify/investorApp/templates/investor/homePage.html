@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration page</title>
+</head>
+<body>
+   <div class="registration-form">
+        <center>
+            <h1><p>Welcome to Institutional<p></h1>
+        
+       <h1>Registration Form</h1>
+       <form action="" method="POST">
+        {% csrf_token %}
+        <table>
+            {% for fm in form %}
+            <tr>
+                <td>
+                    {{ fm.label_tag}}
+                </td>
+                <td>{{fm}} </td>
+            </tr>
+            {% endfor %}
+        </table><br>
+        <table>
+            <th>
+                <td><button type="submit">Signup</button></td>
+            </th>
+        </table><br>
+        <table>
+            <th>
+                <td><p>have an account? <a href="{% url 'investorApp:loginUrl' %}">Login</a></p></td> 
+            </th>
+        </table>
+        </center>
+         {% if messages %}
+          {% for message in messages %}
+            <small {% if messages.tag%} class="{{ message.tag}}" {% endif %} >{{ message }}</small>
+        
+          {% endfor %}
+        {% endif %}
+</body>
+</html>
