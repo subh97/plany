@@ -13,7 +13,7 @@ def draftPost(modeladmin, request, queryset):
 	for post in queryset:
 		post.status = 'Draft'
 		post.save()
-# draftPost.short_description = 'Draft Selected'
+draftPost.short_description = 'Draft Selected'
 
 @admin.register(dealersNetworkDetails) 
 class dealersNetworkDetailsImport(ImportExportModelAdmin):

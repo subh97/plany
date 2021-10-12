@@ -143,6 +143,7 @@ class dealerBankDetail(models.Model):
 
 class stockBrokerDetail(models.Model):
 	name = models.CharField(max_length=1000, null=True, blank=True)
+	author = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='authorSBD', null=True, blank=True)
 	publish = models.DateTimeField(default=timezone.now)
 	created = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True)
@@ -162,6 +163,7 @@ class dealerDematDetail(models.Model):
 	dmatClientMasterReport = models.FileField(upload_to ='dealer/documents/',null=True, blank=True, validators=[FileExtensionValidator(['pdf'])])
 	dpID = models.CharField(max_length=1000, null=True, blank=True)
 	clientID = models.BigIntegerField( null=True, blank=True)
+	author = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='authorDDD', null=True, blank=True)
 	publish = models.DateTimeField(default=timezone.now)
 	created = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True)
@@ -177,6 +179,7 @@ class dealerTransferFacilityDetail(models.Model):
 	profileOwner = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profileOwnerDTFD', null=True, blank=True)
 	transferShares=models.CharField(max_length=50, choices=Transfer_Type,null=True,blank=True)
 	transferFileProof=models.FileField(upload_to='dealer/documents/',null=True,blank=True,validators=[FileExtensionValidator(['pdf'])])
+	author = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='authorDTFD', null=True, blank=True)
 	publish = models.DateTimeField(default=timezone.now)
 	created = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True)
@@ -191,6 +194,7 @@ class dealerTransferFacilityDetail(models.Model):
 class linkedInModels(models.Model):
 	profileOwner =models.OneToOneField(User,on_delete=models.CASCADE,related_name='profileOwnerIIMS',null=True,blank=True)
 	profileOwnerMM=models.ManyToManyField(User,blank=True,related_name='profileOwnerMMIIMS')
+	author = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='authorIIMS', null=True, blank=True)
 	publish = models.DateTimeField(default=timezone.now)
 	created = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True)
